@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Image Test</h1>
+<img src="p1.jpg">
+<img src="p2.jpg">
+<h1>Image Test2</h1>
+<img src="p3.jpg">
+
+
+<img src="p4.jpg">
+</body>
+</html>

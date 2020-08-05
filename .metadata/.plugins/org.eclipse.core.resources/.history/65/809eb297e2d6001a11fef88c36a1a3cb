@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- Form Test -->
+<form>
+ID <input type="text" name="id" size="20"><br>
+NAME <input type="text" name="name" size="20"><br>
+AGE <input type="text" name="age" size="50"><br>
+<input type="submit" value="Register">
+</form>
+</body>
+</html>

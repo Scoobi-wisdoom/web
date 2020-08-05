@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>회원 가입</title>
+</head>
+<body>
+<form action="register" method="GET">
+	<fieldset>
+		<legend>회원가입</legend>
+		<table>
+			<td>
+				아이디
+			</td>
+		
+		
+		</table>
+	</fieldset>
+</form>
+</body>
+</html>
