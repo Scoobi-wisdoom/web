@@ -23,11 +23,13 @@ public class LoginServlet extends HttpServlet {
 		if(id.equals("id01")) {
 			if(pwd.equals("pwd01")) {
 				System.out.println("로그인 성공");
+				response.sendRedirect("menu.html");
 			} else {
 				System.out.println("비밀번호가 일치하지 않습니다.");
+				response.sendRedirect("loginFail.html");
 			}
 		}
-		response.sendRedirect("index.html");
+		
 	}
 
 }

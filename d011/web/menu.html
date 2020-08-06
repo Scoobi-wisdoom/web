@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Welcome</title>
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<style>
+</style>
+<script>
+function allowDrop(ev) {
+	ev.preventDefault();
+	}
+	function drag(ev) {
+		ev.dataTransfer.setData("text", ev.target.id);
+	}
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+
+</script>
+</head>
+<body>
+<div id="title">
+	<p> UFC 승패 예측
+	</p>
+</div>
+<div>
+	<h1>Next Fight</h1>
+	<h2>Khabib Nurmagomedov vs Justin Gaethje</h2>
+</div>
+<div>
+	<div id="divimg">
+	<table>
+		<thead>
+			<tr>
+				<th><img src="css/khabib.jpg"></th><th><img src="css/justin.jpg"></th>
+			</tr> 	
+		</thead>
+		<tbody>
+			<tr>
+				<td>Khabib Nurmagomedov</td><td>Justin Gaethje</td>		
+			</tr>
+		</tbody>
+	</table>
+
+	</div>
+
+</div>
+</body>
+</html>
