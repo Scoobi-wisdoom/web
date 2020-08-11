@@ -60,7 +60,7 @@ $(document).ready(function(){
 	*/
 	$('#item > div').click(function(){
 		var num = $(this).attr('num');
-		var name = $('#item > div:eq('+num+') > h2').text();
+		var name = $(this).find('h2').text();
 		var price = $('#item > div:eq('+num+') > p').text();
 		cartView(name, price);
 		cartSum(price);
