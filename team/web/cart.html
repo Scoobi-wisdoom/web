@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+<style>
+	#product{
+		width:800px;
+		height:200px;
+		border:2px solid blue;
+	}
+	
+	#product > div{
+		width:150px;
+		height:190px;
+		border:3px dotted yellow;
+		float:left;
+	}
+	
+	#cart-list{
+		width:800px;
+		height:200px;
+		border:2px solid red;
+		overflow:auto;
+	}
+	
+	
+	
+</style>
+<script>
+	var products = null;
+	var sum = 0;
+	var list = [];
+	
+	function display(data){
+		
+		$(data).each(function(index, item){
+			var result = '';
+			result += '<div num="'+index+'">';
+			result += '<p>'+item.name+'</p>';
+			result += '<p>'+item.stock+'</p>';
+			result += '<p>'+item.price+'</p>';
+			result += '</div>';
+			$('#product').append(result);
+		});
+		
+	};
+
+	function getData(){
+		products = [
+			{id:'001', name:'햄버거1', price:10000, stock:10},
+			{id:'002', name:'햄버거2', price:20000, stock:20},
+			{id:'003', name:'햄버거3', price:30000, stock:30},
+			{id:'004', name:'햄버거4', price:40000, stock:40},
+			{id:'005', name:'햄버거5', price:50000, stock:50}
+		];
+		display(products);
+	};
+	
+	function cartAdd(n){
+		list.push(products[n]);
+		/*
+		var name = products[n].name;
+		var price = products[n].price;
+		var result = '';
+		
+		
+		
+				
+		$(products[n]).each(function(i, e){
+			result += '<tr>';
+			result += '<td>'+e.name+'</td>';
+			result += '<td>'+e.price+'</td>';
+			result += '<td>'+e.stock+'</td>';
+			result += '</tr>';
+		});
+		
+		$('#cart-list').append(result);
+		sum += price;
+		$('#in > input').val(sum);
+		*/
+	};
+	
+	$(document).ready(function(){
+		getData();
+		
+		// tableResult로 table 생성
+		var tableResult = '';
+		tableResult += '<table>';
+		tableResult += '<thead>';
+		tableResult += '<tr>';
+		tableResult += '<th>'+'이름'+'</th>';
+		tableResult += '<th>'+'가격'+'</th>';
+		tableResult +='<th>'+'수량'+'</th>';
+		tableResult += '</tr>';
+		tableResult += '</thead>';
+		tableResult += '<tbody>';
+		// cart 작업 시작
+		$('#product > div').click(function(){
+			var num = $(this).attr('num');
+			cartAdd(num);
+		});
+		tableResult += '</tbody>';
+		tableResult += '<table>';
+		$('#cart-list').html(tableResult);
+	});
+</script>
+</head>
+<body>
+	<h1 id="title">2조 편의점</h1>
+	<div id="product"></div>
+	<div id="cart">
+		<h1>장바구니</h1>
+	</div>
+	<div id="cart-list"></div>
+	<div id="calculation">
+		<h2 id="in">
+			결제 할 금액 <input type="number"> 원	<button>확인</button>
+		</h2>
+		<h2 id="get">
+			받은 금액 : <span>0</span> 원
+		</h2>
+		<h2 id="change">
+			잔액 : <span>0</span> 원
+		</h2>
+		<button>결제하기</button>
+	</div>
+
+</body>
+</html>
