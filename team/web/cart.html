@@ -1,46 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="utf-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
-</script>
+<link rel="stylesheet" type="text/css" href="css/user.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <style>
-	#product{
-		width:800px;
-		height:200px;
-		border:2px solid blue;
-	}
-	
-	#product > div{
-		width:150px;
-		height:190px;
-		border:3px dotted yellow;
-		float:left;
-	}
-	
-	#cart-list{
-		width:800px;
-		height:200px;
-		border:2px solid red;
-		overflow:auto;
-	}
-	
-	
-	
+/*CSS*/
+
+
 </style>
 <script>
 	var products = null;
 	var sum = 0;
 	var list = [];
 	
+	// 메뉴판을 표시하고, num을 데이터에 부여하는 역할
 	function display(data){
-		
 		$(data).each(function(index, item){
 			var result = '';
 			result += '<div num="'+index+'">';
 			result += '<p>'+item.name+'</p>';
-			result += '<p>'+item.stock+'</p>';
+			result += '<p>'+item.num+'</p>';
 			result += '<p>'+item.price+'</p>';
 			result += '</div>';
 			$('#product').append(result);
@@ -50,83 +31,126 @@
 
 	function getData(){
 		products = [
-			{id:'001', name:'�ܹ���1', price:10000, stock:10},
-			{id:'002', name:'�ܹ���2', price:20000, stock:20},
-			{id:'003', name:'�ܹ���3', price:30000, stock:30},
-			{id:'004', name:'�ܹ���4', price:40000, stock:40},
-			{id:'005', name:'�ܹ���5', price:50000, stock:50}
+			{id:1, name:'햄버거', category_id:'식품', price:10000, num:0, cuml:0},
+			{id:2, name:'피자', category_id:'식품', price:20000, num:0, cuml:0},
+			{id:3, name:'사이다', category_id:'음료', price:30000, num:0, cuml:0},
+			{id:4, name:'행거', category_id:'생필품', price:35000, num:0, cuml:0},
+			{id:5, name:'세탁세제', category_id:'생필품', price:13000, num:0, cuml:0}
 		];
 		display(products);
 	};
 	
-	function cartAdd(n){
-		list.push(products[n]);
-		/*
-		var name = products[n].name;
-		var price = products[n].price;
+	function cartAdd(num){
+		// list에 클릭한 물품 삽임
+		
+		// list에 중복된 물품이 있는지 검사한다.
+		// 중복된 물품이 있으면 수량과 가격을 합산한다.
+		// 1. 먼저 list의 길이가 0일 경우 바로 push
+		if(list.length < 1) {
+			list.push(products[num]);
+			products[num].num++;
+		// 2. list의 길이가 0보다 클 경우 중복 검사
+		}else{
+			// item이 이미 list에 있는지 체크한다.
+			$(list).each(function(index, item){
+				if(item == products[num]){
+					products[num].num++;
+				}
+			});
+		}
+		
+	
+		
+	};
+	
+	function cartDisplay(){
 		var result = '';
-		
-		
-		
-				
-		$(products[n]).each(function(i, e){
-			result += '<tr>';
-			result += '<td>'+e.name+'</td>';
-			result += '<td>'+e.price+'</td>';
-			result += '<td>'+e.stock+'</td>';
-			result += '</tr>';
+		$(list).each(function(index, item){
+			
+			result += '<p>';
+			result += item.name+' '+item.price+'<button>X</button>';
+			result += '</p>';
+			$('#cart-list').html(result);
 		});
-		
-		$('#cart-list').append(result);
-		sum += price;
-		$('#in > input').val(sum);
-		*/
 	};
 	
 	$(document).ready(function(){
 		getData();
 		
-		// tableResult�� table ����
+		// tableResult로 table 생성
+		/*
 		var tableResult = '';
 		tableResult += '<table>';
 		tableResult += '<thead>';
 		tableResult += '<tr>';
-		tableResult += '<th>'+'�̸�'+'</th>';
-		tableResult += '<th>'+'����'+'</th>';
-		tableResult +='<th>'+'����'+'</th>';
+		tableResult += '<th>'+'이름'+'</th>';
+		tableResult += '<th>'+'가격'+'</th>';
+		tableResult +='<th>'+'수량'+'</th>';
 		tableResult += '</tr>';
 		tableResult += '</thead>';
 		tableResult += '<tbody>';
-		// cart �۾� ����
+		// cart 작업 시작
+		*/
 		$('#product > div').click(function(){
 			var num = $(this).attr('num');
 			cartAdd(num);
+			cartDisplay();
 		});
+		
+		/*
 		tableResult += '</tbody>';
 		tableResult += '<table>';
 		$('#cart-list').html(tableResult);
+		*/
 	});
+	/*
+	var name = products[n].name;
+	var price = products[n].price;
+	var result = '';
+	
+	
+	
+			
+	$(products[n]).each(function(i, e){
+		result += '<tr>';
+		result += '<td>'+e.name+'</td>';
+		result += '<td>'+e.price+'</td>';
+		result += '<td>'+e.stock+'</td>';
+		result += '</tr>';
+	});
+	
+	$('#cart-list').append(result);
+	sum += price;
+	$('#in > input').val(sum);
+	*/
 </script>
 </head>
 <body>
-	<h1 id="title">2�� ������</h1>
-	<div id="product"></div>
-	<div id="cart">
-		<h1>��ٱ���</h1>
-	</div>
-	<div id="cart-list"></div>
-	<div id="calculation">
-		<h2 id="in">
-			���� �� �ݾ� <input type="number"> ��	<button>Ȯ��</button>
-		</h2>
-		<h2 id="get">
-			���� �ݾ� : <span>0</span> ��
-		</h2>
-		<h2 id="change">
-			�ܾ� : <span>0</span> ��
-		</h2>
-		<button>�����ϱ�</button>
-	</div>
+<h1 id="title">2U</h1>
+	<div id="main">
+		<div id="back">
+			<button>←카테고리</button>
+		</div>
+		<div id="product"></div>
 
+			<h2 id="cart">장바구니</h2>
+
+		<div id="cart-list"></div>
+		<div id="calculation">
+			<h2 id="in">
+				결제 할 금액 <input type="number"> 원
+				<button>확인</button>
+			</h2>
+			<h2 id="get">
+				받은 금액 : <span>0</span> 원
+			</h2>
+			<h2 id="change">
+				잔액 : <span>0</span> 원
+			</h2>
+		</div>
+	</div>
+	<div id=charge>
+		<button>결제하기</button>
+	</div>
 </body>
 </html>

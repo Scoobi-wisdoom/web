@@ -1,0 +1,116 @@
+@charset "utf-8";
+
+/*---Fonts, body, button setting start---*/
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+*{
+	font-family: 'Jua', sans-serif;
+	font-weight: normal;
+}
+body{
+	background: #1a5f9c;
+}
+body>div{
+	margin:0 auto;
+	width: 800px;
+}
+button{
+	font-size: 150%;
+	background: #274259;
+	color: white;
+	padding: 5px 15px;
+}
+button:hover{
+	background: #b2c4d4;
+	color:black;
+}
+/*---Fonts, body setting end---*/
+
+/*---Title setting start---*/
+#title{
+	margin-top: 20px;
+	font-weight: bold;
+	font-size: 300%;
+	text-align: center;
+	text-shadow: -3px 0 white, 0 3px white, 3px 0 white, 0 -3px white; 
+	color: #274259;
+	background: #61ad5f;
+}
+/*---Title setting end---*/
+
+/*---Main div setting start---*/
+#main{
+	background: #d4eafc;
+	padding:10px;
+	width: 820px;
+}
+/*---Main div setting end---*/
+
+/*---Back div setting start---*/
+#main>#back{
+	width: 820px;
+}
+#main>#back>button{
+	margin-bottom: 10px;
+	margin-left: 685px;
+	padding: 5px 15px;
+}
+/*---Back div setting end---*/
+
+/*---Product div setting start---*/
+#product {
+	height: 200px;
+	border: 1px solid gray;
+	background: white;
+	overflow: auto;
+}
+
+/*---Product div setting end---*/
+
+/*---Cart div setting start---*/
+#cart{
+	margin-bottom: 5px;
+}
+#cart-list{
+	padding: 5px;
+	height: 100px;
+	border: 1px solid gray;
+	background: white;
+	overflow: auto;
+}
+/*---Cart div setting end---*/
+
+/*---Calculation div setting start---*/
+#calculation{
+	text-align: right;
+}
+#calculation>h2{
+	margin-bottom: 0;
+	margin-top: 5px;
+}
+#calculation>h2>button{
+	font-size: 90%;
+}
+#calculation>#in{
+	margin-top: 20px;
+}
+#calculation>#in>input{
+	font-size: 100%;
+	text-align: right;
+	width: 200px;
+}
+#calculation>#in>button{
+	margin-left: 10px;
+}
+/*---Calculation div setting end---*/
+
+/*---Charge Button setting start---*/
+#charge{
+	background: #d4eafc;
+	padding:2px 10px 5px 10px;
+	width: 820px;
+}
+#charge>button{
+	display:block;
+	margin: 5px auto;
+}
+/*---Charge Button setting end---*/

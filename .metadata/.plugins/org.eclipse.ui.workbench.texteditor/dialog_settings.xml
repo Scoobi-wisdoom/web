@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="form"/>
+		<item key="selection" value=""/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="form"/>
-			<item value="subm"/>
-			<item value="&lt;form"/>
-			<item value="name="/>
-			<item value="submit"/>
-			<item value="placeholder"/>
-			<item value="0 auto"/>
-			<item value="line-height"/>
-			<item value="fixed"/>
-			<item value="value"/>
+			<item value="produc"/>
+			<item value="ms949"/>
+			<item value="val("/>
+			<item value="find"/>
+			<item value="setmarkers"/>
+			<item value="cmd"/>
+			<item value="H"/>
+			<item value="container"/>
+			<item value="map = new"/>
+			<item value="products"/>
+			<item value="each"/>
+			<item value="]"/>
+			<item value="img"/>
+			<item value="ㅑㅡㅎ"/>
+			<item value="setinterval"/>
 		</list>
 		<list key="replacehistory">
 		</list>
