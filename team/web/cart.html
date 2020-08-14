@@ -4,11 +4,10 @@
 <meta charset="utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="css/user.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <style>
 /*CSS*/
-
-
 </style>
 <script>
 	var products = null;
@@ -42,49 +41,79 @@
 	
 	// 클릭한 물품을 전역변수 list에 추가. 중복 체크도 실시.
 	function cartAdd(num){
+		/*
+		list.push(products[num]);
+		list[list.indexOf(products[num])].num = 0;
+		*/
 		// 1. 먼저 list의 길이가 0일 경우 바로 push
 		if(list.length < 1) {
-			products[num].num++;
-			list.push(products[num]);
+			var s = products[num];
+			s.num = 1;
+			list.push(s);
 		// 2. list의 길이가 0보다 클 경우 중복 검사
 		}else{
-			// item이 이미 list에 있는지 체크한다.
-			if(list.includes(products[num])){
-				products[num].num++;
-			// 중복이 없을 경우 list에 추가한다.
-			}else{
-				products[num].num++;
-				list.push(products[num]);
+			var s = products[num];
+			var check = false;
+			for(var i=0; i < list.length; i++){
+				// item이 이미 list에 있는지 체크한다.
+				// 이미 있으면 list에 수량 num++
+				if(list[i].id == s.id){
+					list[i].num++;
+					check = true;
+					break; 
+				}	
 			}
+			if(!check){
+				list.push(s);
+				list[list.indexOf(s)].num = 0;
+				list[list.indexOf(s)].num++;
+			}
+			
+
 		}
 	};
 	
 	// #cart-list에 전역변수 list를 html로 보여줌.
 	function cartDisplay(){
+		
+		var resultHead = '';
 		var result = '';
-		result += '<p>';
-		result += '이름  '+'  가격'+'  수량';
-		result += '</p>';
+		resultHead += '<p>';
+		resultHead += '이름  '+'  가격'+'  수량';
+		resultHead += '</p>';
 		$(list).each(function(index, item){
+			$('#cart-list').children().remove(); // list에 있는 것을 html로 생성하기 전에 기존 html을 삭제 
 			result += '<p>';
-			result += item.name+' '+item.price+' <input type="number" value='+item.num+'>';
-			result += ' <button '+index+'>x</button>'
+			result += item.name+' '+item.price+' <span>'+item.num+'개</span>';
+			result += ' <button>x</button>';
 			result += '</p>';
+			$('#cart-list').html(resultHead+result);
+			cartButtonX(); // #cart-list 내에서 x 버튼 클릭시 물품 삭제
+			cartSum(); // #cart-list의 구입 물품의 총액을 계산
 		});
-		$('#cart-list').html(result);
-	};
-	
-	function cartSubt(){
+		
 		
 	};
+	
+	// #cart-list 내에서 x 버튼 클릭시 물품 삭제
+	function cartButtonX(){
+		$('button').click(function(){
+			$(this).parent().remove();
+			//index_products = products.indexOf(); // x버튼이 눌린 물품의 products index
+			//products[index_products].num  = 0; // 데이터 products 에서 num(매출량) 변경
+			list.splice(); // list에서 해당 index 번째 element 삭제
+			cartSum(); // #cart-list의 구입 물품의 총액을 계산
+		});
+	};
+	
 	
 	// #cart-list의 구입 물품의 총액을 계산
 	function cartSum(){
 		var sum = 0;
 		$('#cart-list p').each(function(index, p){
-			if($(p).text().startsWith('이름')){
+			if($(p).text().startsWith('이름')){ // #cart-list 첫 번째 p tag 제외 (이름 가격 수량)
 			}else{
-				var number = $(p).find('input').val(); // #cart-list 내에 있는 각 물품의 수량
+				var number = $(p).find('span').text().match(/\d+/g)[0]; // 각 물품의 수량. 아래와 같은 regex 적용
 				var price =	$(p).text().match(/\d+/g)[0]; // 숫자만 인식하는 regex
 				sum += number * price;
 			}
@@ -101,7 +130,16 @@
 			var num = $(this).attr('num');
 			cartAdd(num); // 클릭한 물품을 전역변수 list에 추가. 중복 체크도 실시.
 			cartDisplay(); // #cart-list에 전역변수 list를 html로 보여줌.
-			cartSum(); // #cart-list의 구입 물품의 총액을 계산
+		});
+		
+		// 결제하기를 클릭하면 event 발생
+		$('#charge > button').click(function(){
+			// list를 JSON으로 변환
+			var jsonObj = {};
+			for (var i = 0, len = list.length; i < len; i++) {
+			    jsonObj['position' + (i + 1)] = list[i];
+			}
+			console.log(jsonObj);
 		});
 		
 	});
@@ -109,14 +147,14 @@
 </script>
 </head>
 <body>
-<h1 id="title">2U</h1>
+	<h1 id="title">2U</h1>
 	<div id="main">
 		<div id="back">
 			<button>←카테고리</button>
 		</div>
 		<div id="product"></div>
 
-			<h2 id="cart">장바구니</h2>
+		<h2 id="cart">장바구니</h2>
 
 		<div id="cart-list"></div>
 		<div id="calculation">
