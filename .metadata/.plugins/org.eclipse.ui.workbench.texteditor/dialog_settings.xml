@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="data.id"/>
+		<item key="selection" value="center"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="center"/>
+			<item value="suser"/>
+			<item value="main center"/>
+			<item value="loginiml"/>
+			<item value="driver"/>
 			<item value="data.id"/>
 			<item value="업데이트"/>
 			<item value="click("/>
@@ -18,11 +23,6 @@
 			<item value="cartAdd"/>
 			<item value="$(list"/>
 			<item value="val("/>
-			<item value="cartsum"/>
-			<item value="&quot;number&quot;"/>
-			<item value="cartsum\"/>
-			<item value="produc"/>
-			<item value="ms949"/>
 		</list>
 		<list key="replacehistory">
 		</list>
