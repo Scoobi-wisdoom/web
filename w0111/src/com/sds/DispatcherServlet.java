@@ -9,37 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class DispatcherServlet
- */
 @WebServlet({ "/DispatcherServlet", "/dispatcher" })
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public DispatcherServlet() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    public DispatcherServlet() {
+        super();
+    }
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void service(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		request.setCharacterEncoding("EUC-KR");
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("EUC-KR"); // 여기서 한글 처리해주면 만사 OK
+		
 		String uri = request.getRequestURI();
 		String path = uri.substring(uri.lastIndexOf("/"));
 		path = path.substring(1, path.lastIndexOf("."));
-		System.out.println("Request: "+path);
+		System.out.println("request:"+path);
 		String next = "main.jsp";
-		
 		if(path.equals("main")) {
 			next = "main.jsp";
-		}else if(path.equals("login"))  {
+		}else if(path.equals("login")) {
 			next = "main.jsp";
 			request.setAttribute("centerpage", "login");
 		}else if(path.equals("register")) {
@@ -48,8 +37,15 @@ public class DispatcherServlet extends HttpServlet {
 		}else {
 			next = path;
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(next);
+		RequestDispatcher rd = 
+		request.getRequestDispatcher(next);
 		rd.forward(request, response);
+
 	}
 
 }
+
+
+
+
+

@@ -9,3 +9,10 @@ NAME<input type="text" name="name"><br>
 <input type="submit" value="REGISTER">
 </form>
 </div>
+
+
+
+
+
+
+

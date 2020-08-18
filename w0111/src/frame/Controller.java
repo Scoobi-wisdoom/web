@@ -18,7 +18,7 @@ public abstract class Controller<K,V> {
 	public Connection getConnection() {
 		String user = "db";
 		String password = "db";
-		String url = "jdbc:oracle:thin:@127.0.0.1:1521:XE";
+		String url = "jdbc:oracle:thin:@192.168.0.36:1521:XE";
 		Connection con = null; 
 		try {
 			con = 

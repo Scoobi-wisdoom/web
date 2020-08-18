@@ -37,14 +37,32 @@ public class UserController extends Controller<String, User> {
 
 	@Override
 	public void remove(String k) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		try {
+			con = getConnection();
+			dao.delete(con, k);
+			con.commit();
+		}catch(Exception e) {
+			con.rollback();
+			throw e;
+		}finally {
+			close(con);
+		}		
 	}
 
 	@Override
 	public void modify(User v) throws Exception {
-		// TODO Auto-generated method stub
-		
+		Connection con = null;
+		try {
+			con = getConnection();
+			dao.update(con, v);
+			con.commit();
+		}catch(Exception e) {
+			con.rollback();
+			throw e;
+		}finally {
+			close(con);
+		}		
 	}
 
 	@Override

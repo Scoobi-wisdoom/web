@@ -10,35 +10,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import vo.User;
+import controller.UserController;
 
-/**
- * Servlet implementation class RegisterImplServlet
- */
 @WebServlet({ "/RegisterImplServlet", "/registerimpl" })
 public class RegisterImplServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegisterImplServlet() {
+    
+	UserController controller;
+	
+	public RegisterImplServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        controller = new UserController();
     }
-
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
 		String name = request.getParameter("name");
 		System.out.println(id+" "+pwd+" "+name);
 		User user = new User(id, pwd, name);
 		
-		request.setAttribute("registeruser", user);
-		RequestDispatcher rd = request.getRequestDispatcher("registerok.jsp");
+		try {
+			controller.register(user);
+			request.setAttribute("registeruser", user);
+			request.setAttribute("centerpage", "registerok");
+		} catch (Exception e) {
+			request.setAttribute("centerpage", "registerfail");
+			e.printStackTrace();
+		}
+		
+		
+		
+		RequestDispatcher rd = 
+		request.getRequestDispatcher("main.jsp");
 		rd.forward(request, response);
 	}
 
 }
+
+
+
+
+
+
+

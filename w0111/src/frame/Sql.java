@@ -1,6 +1,7 @@
 package frame;
 
 public class Sql {
+	
 	// User SQL
 	public static String userInsert = 
 	"INSERT INTO GAME_USER VALUES (?,?,?)";
@@ -27,6 +28,9 @@ public class Sql {
 	
 	public static String userItemSelect = 
 	"SELECT u.ID, u.USER_ID, u.ITEM_ID, g.NAME AS ITEM_NAME, u.QT FROM USER_ITEM u, GAME_ITEM g WHERE u.item_id = g.id  AND USER_ID = ?";
+	
+		
+	
 }
 
 
